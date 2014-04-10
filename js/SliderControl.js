@@ -83,13 +83,14 @@ L.Control.SliderControl = L.Control.extend({
             step: 1,
             slide: function (e, ui) {
                 if(!!options.markers[ui.value]) {
-                    //If there is no time property, this line has to be removed (or exchanged with a different property)
-                    if(options.markers[ui.value].feature.properties.time){
-                        if(options.markers[ui.value]) $('#slider-timestamp').html(options.markers[ui.value].feature.properties.time.substr(0, 19));
+                    //If there is no startTime property, this line has to be removed (or exchanged with a different property)
+                    if(options.markers[ui.value].feature.properties.startTime){
+                        if(options.markers[ui.value]) $('#slider-timestamp').html(options.markers[ui.value].feature.properties.startTime.substr(0, 19));
                     }
+                    console.log(options.range)
                     if(options.range){
                         for (var i = ui.values[0]; i< ui.values[1]; i++){
-                            if(options.markers[i]) map.addLayer(options.markers[i]);
+                           if(options.markers[i]) map.addLayer(options.markers[i]); 
                         }
                         for (var i = options.maxValue; i > ui.values[1]; i--) {
                             if(options.markers[i]) map.removeLayer(options.markers[i]);
