@@ -34,7 +34,8 @@ L.Control.SliderControl = L.Control.extend({
 
         // Create a control sliderContainer with a jquery ui slider
         var sliderContainer = L.DomUtil.create('div', 'slider', this._container);
-        $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:10px;background-color:#FFFFFF"></div></div>');
+        $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"><div id="slider-timestamp" style="width:55px; margin-top:15px; background-color:#FFFFFF"></div></div>');
+        //$(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:10px;background-color:#FFFFFF"></div></div>');
         //Prevent map panning/zooming while using the slider
         $(sliderContainer).mousedown(function () {
             map.dragging.disable();
@@ -42,7 +43,7 @@ L.Control.SliderControl = L.Control.extend({
         $(document).mouseup(function () {
             map.dragging.enable();
             //Only show the slider timestamp while using the slider
-            $('#slider-timestamp').html('');
+            // $('#slider-timestamp').html('');
         });
 
         var options = this.options;
@@ -85,7 +86,7 @@ L.Control.SliderControl = L.Control.extend({
                 if(!!options.markers[ui.value]) {
                     //If there is no startTime property, this line has to be removed (or exchanged with a different property)
                     if(options.markers[ui.value].feature.properties.startTime){
-                        if(options.markers[ui.value]) $('#slider-timestamp').html(options.markers[ui.value].feature.properties.startTime.substr(0, 19));
+                        if(options.markers[ui.value]) $('#slider-timestamp').html(options.markers[ui.value].feature.properties.startTime.substr(11, 5));
                     }
                     console.log(options.range)
                     if(options.range){
