@@ -34,7 +34,9 @@ L.Control.SliderControl = L.Control.extend({
 
         // Create a control sliderContainer with a jquery ui slider
         var sliderContainer = L.DomUtil.create('div', 'slider', this._container);
+
         $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:10px;background-color:#FFFFFF"></div></div>');
+
         //Prevent map panning/zooming while using the slider
         $(sliderContainer).mousedown(function () {
             map.dragging.disable();
@@ -84,8 +86,16 @@ L.Control.SliderControl = L.Control.extend({
             slide: function (e, ui) {
                 if(!!options.markers[ui.value]) {
                     //If there is no startTime property, this line has to be removed (or exchanged with a different property)
+                    
+                    var PrettyDate = new Date(options.markers[ui.value].feature.properties.startTime);
+                    
+                     //PrettyDate.getMinutes() += '0' + PgetMinutes;
+                    var PrettyString = "";
+                    PrettyString += PrettyDate.getHours() + ":";
+                    PrettyString += (PrettyDate.getMinutes() < 10) ? ("0" + PrettyDate.getMinutes()) : PrettyDate.getMinutes();
+                    
                     if(options.markers[ui.value].feature.properties.startTime){
-                        if(options.markers[ui.value]) $('#slider-timestamp').html(options.markers[ui.value].feature.properties.startTime.substr(0, 19));
+                        if(options.markers[ui.value]) $('#slider-timestamp').html(PrettyString);
                     }
                     console.log(options.range)
                     if(options.range){
