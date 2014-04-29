@@ -642,8 +642,8 @@
       "properties": {
         "streetName": "19th Street North",
         "closureExtent": "from Lynn Street to North Nash Street",
-        "startTime": "2013-10-27T08:00:00.000Z",
-        "endTime": "2013-10-27T21:30:00.000Z"
+        "startTime": "2013-10-28T08:00:00.000Z",
+        "endTime": "2013-10-29T21:30:00.000Z"
       },
       "geometry": {
         "type": "LineString",

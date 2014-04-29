@@ -3,7 +3,7 @@ var map = L.map('map').setView([38.878432, -77.109218], 15);
 
 app.load = function() {
 
-  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
       attribution: 'Map data © OpenStreetMap contributors',
       maxZoom: 18
   }).addTo(map);
