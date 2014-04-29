@@ -34,9 +34,7 @@ L.Control.SliderControl = L.Control.extend({
 
         // Create a control sliderContainer with a jquery ui slider
         var sliderContainer = L.DomUtil.create('div', 'slider', this._container);
-
-        $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:10px;background-color:#FFFFFF"></div></div>');
-
+        $(sliderContainer).append('<div id="leaflet-slider"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; background-color:#FFFFFF;"></div></div>');
         //Prevent map panning/zooming while using the slider
         $(sliderContainer).mousedown(function () {
             map.dragging.disable();
@@ -45,6 +43,7 @@ L.Control.SliderControl = L.Control.extend({
             map.dragging.enable();
             //Only show the slider timestamp while using the slider
             $('#slider-timestamp').html('');
+            $('#slider-timestamp').css('border','');
         });
 
         var options = this.options;
@@ -88,16 +87,16 @@ L.Control.SliderControl = L.Control.extend({
                     //If there is no startTime property, this line has to be removed (or exchanged with a different property)
                     
                     var PrettyDate = new Date(options.markers[ui.value].feature.properties.startTime);
-                    
-                     //PrettyDate.getMinutes() += '0' + PgetMinutes;
+                     
+                    //PrettyDate.getMinutes() += '0' + PgetMinutes;
                     var PrettyString = "";
                     PrettyString += PrettyDate.getHours() + ":";
                     PrettyString += (PrettyDate.getMinutes() < 10) ? ("0" + PrettyDate.getMinutes()) : PrettyDate.getMinutes();
-                    
+ 
                     if(options.markers[ui.value].feature.properties.startTime){
-                        if(options.markers[ui.value]) $('#slider-timestamp').html(PrettyString);
+                        if(options.markers[ui.value]) $('#slider-timestamp').html('<p style="padding-top:5px;" class="paramTitle">Street Name:</p>' + options.markers[ui.value].feature.properties.streetName + '<p class="paramTitle">Closure Extent:</p>' + options.markers[ui.value].feature.properties.closureExtent + '<p class="paramTitle">Start Time:</p>' + PrettyString + '<p class="paramTitle">End Time:</p>' + options.markers[ui.value].feature.properties.endTime.substr(0, 19) + '<p></p>' );
+                        $('#slider-timestamp').css('border','solid black');
                     }
-                    console.log(options.range)
                     if(options.range){
                         for (var i = ui.values[0]; i< ui.values[1]; i++){
                            if(options.markers[i]) map.addLayer(options.markers[i]); 
@@ -111,6 +110,12 @@ L.Control.SliderControl = L.Control.extend({
                     }else{
                         for (var i = options.minValue; i < ui.value ; i++) {
                             if(options.markers[i]) map.addLayer(options.markers[i]);
+                            if(options.markers[i]) {
+                               if(options.markers[i].feature.properties.endTime < options.markers[ui.value].feature.properties.startTime) {
+                                   if(options.markers[i - 1]) map.removeLayer(options.markers[i - 1]);
+                                   if(options.markers[31].feature.properties.endTime < options.markers[ui.value].feature.properties.startTime) map.removeLayer(options.markers[31]);
+                            }                           
+                        }
                         }
                         for (var i = ui.value; i <= options.maxValue; i++) {
                             if(options.markers[i]) map.removeLayer(options.markers[i]);

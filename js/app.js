@@ -3,18 +3,16 @@ var map = L.map('map').setView([38.878432, -77.109218], 15);
 
 app.load = function() {
 
-  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
       attribution: 'Map data © OpenStreetMap contributors',
       maxZoom: 18
   }).addTo(map);
   $.getJSON("map.geojson", function(json) {
-    console.dir(json);
-    for( var i = 0; i < json.features.length; i++)
-    {
-        json.features[i];
-    }
-    
-    
+   console.dir(json);
+     for( var i = 0; i < json.features.length; i++)
+     {
+         json.features[i];
+     }
     var testlayer = L.geoJson(json);
     var sliderControl = L.control.sliderControl({
         position: "topright",

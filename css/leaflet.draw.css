@@ -96,8 +96,7 @@
     color: #FFF;
 /*  Trying different fonts 
     font: 11px/19px "Helvetica Neue", Arial, Helvetica, sans-serif;  */
-    font: 11px/19px "Times New Roman", Times New Roman, Times New Roman, serif;
-    line-height: 28px;
+    font: 11px/19px "Times New Roman", Times New Roman, Times New Roman, serif;    line-height: 28px;
     text-decoration: none;
     padding-left: 10px;
     padding-right: 10px;
@@ -231,8 +230,7 @@
     color: #fff;
 /*  Trying different fonts 
     font: 12px/18px "Helvetica Neue", Arial, Helvetica, sans-serif;  */
-    font: 12px/18px "Times New Roman", Times New Roman, Times New Roman, serif;
-    margin-left: 20px;
+    font: 12px/18px "Times New Roman", Times New Roman, Times New Roman, serif;    margin-left: 20px;
     margin-top: -21px;
     padding: 4px 8px;
     position: absolute;
