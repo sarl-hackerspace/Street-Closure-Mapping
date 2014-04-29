@@ -85,8 +85,16 @@ L.Control.SliderControl = L.Control.extend({
             slide: function (e, ui) {
                 if(!!options.markers[ui.value]) {
                     //If there is no startTime property, this line has to be removed (or exchanged with a different property)
+                    
+                    var PrettyDate = new Date(options.markers[ui.value].feature.properties.startTime);
+                     
+                    //PrettyDate.getMinutes() += '0' + PgetMinutes;
+                    var PrettyString = "";
+                    PrettyString += PrettyDate.getHours() + ":";
+                    PrettyString += (PrettyDate.getMinutes() < 10) ? ("0" + PrettyDate.getMinutes()) : PrettyDate.getMinutes();
+ 
                     if(options.markers[ui.value].feature.properties.startTime){
-                        if(options.markers[ui.value]) $('#slider-timestamp').html('<p style="padding-top:5px;" class="paramTitle">Street Name:</p>' + options.markers[ui.value].feature.properties.streetName + '<p class="paramTitle">Closure Extent:</p>' + options.markers[ui.value].feature.properties.closureExtent + '<p class="paramTitle">Start Time:</p>' + options.markers[ui.value].feature.properties.startTime.substr(0, 19) + '<p class="paramTitle">End Time:</p>' + options.markers[ui.value].feature.properties.endTime.substr(0, 19) + '<p></p>' );
+                        if(options.markers[ui.value]) $('#slider-timestamp').html('<p style="padding-top:5px;" class="paramTitle">Street Name:</p>' + options.markers[ui.value].feature.properties.streetName + '<p class="paramTitle">Closure Extent:</p>' + options.markers[ui.value].feature.properties.closureExtent + '<p class="paramTitle">Start Time:</p>' + PrettyString + '<p class="paramTitle">End Time:</p>' + options.markers[ui.value].feature.properties.endTime.substr(0, 19) + '<p></p>' );
                         $('#slider-timestamp').css('border','solid black');
                     }
                     if(options.range){
