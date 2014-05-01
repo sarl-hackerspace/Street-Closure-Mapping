@@ -93,6 +93,7 @@ L.Control.SliderControl = L.Control.extend({
                     var PrettyString = "";
                     PrettyString += PrettyDate.getHours() + ":";
                     PrettyString += (PrettyDate.getMinutes() < 10) ? ("0" + PrettyDate.getMinutes()) : PrettyDate.getMinutes();
+                    PrettyString += ((PrettyDate.getHours() < 12) || (PrettyDate.getHours() === "24")) ? (" AM") : (" PM");
                     
                     if(options.markers[ui.value].feature.properties.startTime){
                         if(options.markers[ui.value]) $('#slider-timestamp').html(PrettyString);
